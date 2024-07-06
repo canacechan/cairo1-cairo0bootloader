@@ -1,3 +1,9 @@
+use core::{
+    integer,
+    integer::{
+         u128_sqrt, u128_wrapping_sub, u16_sqrt, u256_sqrt, u256_wide_mul, u32_sqrt,
+        u512_safe_div_rem_by_u256, u512, u64_sqrt, u8_sqrt
+    }};
 #[starknet::interface]
 pub trait IHelloBootloader<TContractState> {
     fn main(ref self: TContractState, input: Array<felt252>) -> Array<felt252>;
@@ -32,6 +38,8 @@ mod HelloBootloader {
             let b_2 = input.b * input.b;
             let c_2 = input.c * input.c;
             assert(a_2 + b_2 == c_2, 'invalid value');
+            let x: u128 = 1;
+            let _x1 = (x / 0x20000) | (x * 0x8000);
 
             let mut output = array![];
             Output { a_2, b_2, c_2, }.serialize(ref output);
